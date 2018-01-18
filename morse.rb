@@ -52,7 +52,7 @@ def code_morse(phrase_to_code)
 	'.' => '.-.-.-',  
 	',' => '--..--',
 	"'" => '.----.', 
-	"\"" => '.-..-.',
+	%["] => '.-..-.',
 	'_' => '..--.-',
 	':' => '---...',
 	';' => '-.-.-.',
@@ -73,8 +73,7 @@ def code_morse(phrase_to_code)
 	coded_phrase
 end
 
-str_to_code = "Ruby (wym. /'ru:bi/) – interpretowany, w pełni obiektowy i dynamicznie typowany język programowania stworzony w 1995 roku przez Yukihiro Matsumoto (pseudonim Matz). W języku angielskim ruby oznacza rubin."
-# str_to_code = " \" "
+str_to_code = %["Ruby (wym. /'ru:bi/) – interpretowany, w pełni obiektowy i dynamicznie typowany język programowania stworzony w 1995 roku przez Yukihiro Matsumoto (pseudonim Matz). W języku angielskim ruby oznacza rubin."]
 code = code_morse(str_to_code)
 puts "zakodowany tekst: \n#{code}"
 

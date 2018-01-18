@@ -12,9 +12,9 @@ def to_roman(arabic_number)
 	end
 
 	replacements_hash = { 'VIIII' => 'IX',  'IIII' => 'IV',  'XXXX' => 'XL',  'CCCC' => 'CD'}
-	replacements_hash.each { |replacement, replaced| in_roman.gsub!(replacement, replaced)}
+	# replacements_hash.each { |replacement, replaced| in_roman.gsub!(replacement, replaced)} #inny sposób rozwiązania
 
-	# in_roman.gsub!(/[VIIII-IIII-XXXX-CCCC]/, replacements_hash) # => próbowałam to zapisać w ten sposób, ale wyskakuje mi błąd 'empty range in char class' i nie wiem co jest źle
+	in_roman.gsub!(/VIIII|IIII|XXXX|CCCC/, replacements_hash) 
 	print "#{in_roman}\n"
 end
 
