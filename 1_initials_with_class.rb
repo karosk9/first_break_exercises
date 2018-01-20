@@ -1,16 +1,12 @@
 class Initials
-	attr_accessor :full_name
+	attr_reader :full_name
 
   def initialize(full_name)
   	@full_name = full_name
   end
 
   def to_s
-  	str = ""
-  	full_name.split(" ").each do |part|
-  	str += part[0].upcase
-  	end
-  	str
+  	full_name.split.map { |part| part.chr.upcase}.join 
   end
 end
 
