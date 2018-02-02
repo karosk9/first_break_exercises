@@ -1,33 +1,21 @@
-def queue_time(times,till_nr)
-	tills = Array.new(till_nr, 0) # =>  index+1 to numer kasy, wartość to pozostały czas obsługi
-	operation_time = 0
-		while times.length>0	
-			tills.map! do |till|
-				if till == 0
-				 	till += times[0]  	# dodaje czas obsługi do istniejących pustych kas
-					times.shift			# usuwa pierwszą komórkę z tablicy times, która już jest obsługiwana - czyli usuwa osobę z kolejki
-					elsif till!=0		# by map! nie zwracał nil, jeśli nie ma czego nadpisać
-						till = till				
-				end
-			end
-			print "\nczas obsługi klientów przy kasach: \n#{tills.join(' min, ')} min \n"
-			puts "ilość osób w kolejce: #{times.length}"
-			
-			a = tills.min
-			operation_time += tills.min
-			
-			tills.map! do |till|
-				till -= a
-			end
-			puts "kasa nr #{tills.index(0)+1} jest wolna"
-		
-		end
-		operation_time = operation_time+tills.max
-		print "\nnie ma więcej klientów\nczas obsługi wszystkich klientów: #{operation_time} minut.\n"
-
-	operation_time
+def queue_time(times, tills)
+	total_time = 0
+	tills_a = Array.new(tills) 
+	tills_h = Hash.new
+	tills_a.each_index { |id|
+		tills_h["kasa nr #{id+1}"]=0
+	}
+	while times.length != 0
+		tills_h.each { |till,time| tills_h[till]+=times.shift if time ==0}
+		minimal_time = tills_h.values.min
+		total_time += minimal_time		
+		tills_h.each {|till, time| tills_h[till] -= minimal_time}
+	end
+	total_time += tills_h.values.max
+	total_time
 end
-queue_time([10, 2, 3, 3], 2)
-queue_time([5,3,4], 1)
-queue_time([2, 3, 10], 2)
-queue_time([2, 3, 10, 6, 8, 1, 4, 7], 3)
+
+puts queue_time([10, 2, 3, 3], 2)
+puts queue_time([5,3,4], 1)
+puts queue_time([2, 3, 10], 2)
+puts queue_time([2, 3, 10, 6, 8, 1, 4, 7], 3)

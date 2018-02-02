@@ -4,7 +4,7 @@
 def highest_number(number)
 	new_number= ""
 	number.to_s.split(//).sort.reverse.each {|element| new_number += element}
-	print "#{new_number}\n"
+	puts new_number
 end
 
 highest_number(132)

@@ -8,12 +8,7 @@ def pangram?(string)
 	polish_alphabet = %w[a ą b c ć d e ę f g  h i j k l ł m n ń o ó p r s ś t u w y z ź ż]
 	
 	polish_alphabet.each do |letter| 
-		if string.include?(letter) 
-			result = "to jest pangram"
-		else
-			result = "to nie pangram"
-		break
-		end
+		string.include?(letter) ? result = true : result = false && break
 	end
 	puts result
 end

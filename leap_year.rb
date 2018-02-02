@@ -1,5 +1,5 @@
 def leap_year?(year)
-	year % 400 == 0 || year % 4 == 0 && year % 100 != 0 ? true : false
+	year % 400 == 0 || year % 4 == 0 && year % 100 != 0 
 end
 
 puts leap_year?(2004) 

@@ -1,16 +1,10 @@
 def palindrome?(any_string)
-	str = any_string.downcase.delete(' ')
-	i = 0
-	while i < str.length/2
-		if str[i] == str[-(i+1)]
-			result = true
-		elsif str[i] != str[-i]	
-			result = false
-			break
-		end
-		i += 1
+	str = any_string.downcase.delete(' ').split(//)
+	result = false
+	str.each_with_index do |char, id|
+		str[id] == str[-(id+1)] ? result = true : result = false && break
 	end
-	result
+	puts result
 end
 
 palindrome?('Kobyła ma mały bok')

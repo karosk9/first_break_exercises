@@ -1,34 +1,33 @@
-# Zaimplementuj funkcję, która wypisze, który z graczy wygrywa w grze papier, kamień,
-# nożyce. Funkcja powinna przyjmować dwa argumenty odpowiadające wyborom graczy i
-# działać w następujący sposób:
+def rock_paper_scissors(figure='', computer_figure='')
+	figures = %w[scissors paper rock]
 
-def rock_paper_scissors(first_figure='', second_figure='')
-	puts "Zagraj: rock, paper, scissors"
-	puts "Figura pierwszgo gracza"
-	first_figure = gets.chomp
-	puts "Figura drugiego gracza"
-	second_figure = gets.chomp
-
-	if first_figure==second_figure
-		"remis"
-	elsif first_figure=='rock'
-		case second_figure
-		when 'paper' then 'gracz 2 wygrywa'
-		when 'scissors' then 'gracz 1 wygrywa'
-		end
-	elsif first_figure=='paper'
-		case second_figure
-		when 'rock' then 'gracz 1 wygrywa'
-		when 'scissors' then 'gracz 2 wygrywa'
-		end
-	elsif first_figure=='scissors'
-		case second_figure
-		when 'rock' then 'gracz 2 wygrywa'
-		when 'paper' then 'gracz 1 wygrywa'
-		end
-	else
-	"wrong input\ntype one of figures: rock, paper, scissors"
+	loop do
+		computer_figure = figures.sample
+		puts "Type your figure: scissors, paper or rock"
+		figure = gets.chomp
+		raise 'ArgumentError' if figures.include?(figure) == false
+		puts "Player: #{figure}, Computer: #{computer_figure}"
+		puts "the draw, play once again" if figure==computer_figure
+		break if figure != computer_figure
 	end
 
+	case figure
+		when 'rock'
+			figures_arr = %w[scissors rock paper]
+		when 'paper'
+			figures_arr = %w[rock paper scissors]
+		when 'scissors'
+			figures_arr = %w[o scissors rock]
+	end
+
+	comparition = Hash.new
+	figures_arr.each {|figure,value| comparition[figure]=figures_arr.index(figure)}
+
+	if comparition[figure]>comparition[computer_figure]
+		puts "You are the winner"
+	else
+		puts "Computer won"
+	end
 end
-puts rock_paper_scissors	# czy ten program ma wyglądać w ten sposób, czy szukać opcji bardziej zwięzłego zapisu?
+
+rock_paper_scissors

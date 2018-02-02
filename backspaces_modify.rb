@@ -1,16 +1,8 @@
-
-def backspaces(str)
-	tab = str.split(//)
-	k=0
-	while k<tab.length
-		if tab[k] == "#"
-			tab.delete_at(k)
-			tab.delete_at(k-1)
-		k=0
-		end
-	k+=1
+def backspaces(any_string)
+	while any_string.include?('#')
+		any_string.gsub!(/.#/,'')
 	end
-	print "\"#{tab.join}\"\n"
+	puts any_string
 end
 
 backspaces("abc#d##d")

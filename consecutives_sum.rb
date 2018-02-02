@@ -1,6 +1,5 @@
 def consecutives_sum(array)
-	new_arr = array.chunk_while {|i,j| i==j}.to_a
-	print new_arr.map! {|x| x.sum}
+	p array.chunk_while {|i,j| i==j}.map {|x| x.sum}
 end
 
 consecutives_sum([1, 4, 4, 4, 0, 4, 3, 3, 1])
