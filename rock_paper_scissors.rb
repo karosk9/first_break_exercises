@@ -1,6 +1,5 @@
 def rock_paper_scissors(figure='', computer_figure='')
 	figures = %w[scissors paper rock]
-
 	loop do
 		computer_figure = figures.sample
 		puts "Type your figure: scissors, paper or rock"
